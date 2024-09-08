@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 // Project import
 import { AdminComponent } from './theme/layouts/admin-layout/admin-layout.component';
 import { GuestComponent } from './theme/layouts/guest/guest.component';
+import { usuariosGuardGuard } from './Guards/usuarios-guard.guard';
 
 const routes: Routes = [
   {
@@ -34,7 +35,8 @@ const routes: Routes = [
       },
       {
         path: 'proveedores',
-        loadComponent: () => import('./proveedores/proveedores.component').then((m) => m.ProveedoresComponent)
+        loadComponent: () => import('./proveedores/proveedores.component').then((m) => m.ProveedoresComponent),
+        canActivate: [usuariosGuardGuard]
       },
       {
         path: 'nuevoproveedor',
@@ -67,7 +69,41 @@ const routes: Routes = [
       {
         path: 'facturas',
         loadComponent: () => import('./facturas/facturas.component').then((m) => m.FacturasComponent)
-      }
+      },
+
+      //Deber  de unidad de medida y de productos
+      {
+        path: 'unidadmedida',
+        loadComponent: () => import('./unidadmedida/unidadmedida.component').then((m) => m.UnidadmedidaComponent),
+        canActivate: [usuariosGuardGuard]
+      },
+      /*{
+        path: 'nuevaunidadmedida',
+        loadComponent: () =>
+          import('./unidadmedida/nuevaunidadmedida/nuevaunidadmedida.component').then((m) => m.NuevaunidadmedidaComponent),
+        canActivate: [usuariosGuardGuard]
+      },
+      {
+        path: 'editarunidadmedida/:id',
+        loadComponent: () =>
+          import('./unidadmedida/nuevaunidadmedida/nuevaunidadmedida.component').then((m) => m.NuevaunidadmedidaComponent),
+        canActivate: [usuariosGuardGuard]
+      },
+      {
+        path: 'productos',
+        loadComponent: () => import('./productos/productos.component').then((m) => m.ProductosComponent),
+        canActivate: [usuariosGuardGuard]
+      },
+      {
+        path: 'nuevoproducto',
+        loadComponent: () => import('./productos/nuevoproducto/nuevoproducto.component').then((m) => m.NuevoproductoComponent),
+        canActivate: [usuariosGuardGuard]
+      },
+      {
+        path: 'editarproducto/:id',
+        loadComponent: () => import('./productos/nuevoproducto/nuevoproducto.component').then((m) => m.NuevoproductoComponent),
+        canActivate: [usuariosGuardGuard]
+      }*/
     ]
   },
   {
@@ -76,6 +112,10 @@ const routes: Routes = [
     children: [
       {
         path: 'login',
+        loadComponent: () => import('./demo/authentication/login/login.component')
+      },
+      {
+        path: 'login/:id',
         loadComponent: () => import('./demo/authentication/login/login.component')
       },
       {
