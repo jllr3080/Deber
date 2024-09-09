@@ -1,8 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { IIva } from 'src/app/Interfaces/IIVA';
 import { Iproveedor } from 'src/app/Interfaces/iproveedor';
 import { IUnidadMedida } from 'src/app/Interfaces/iunidadmedida';
+import { ivaService } from 'src/app/Services/iva.service';
 import { ProveedorService } from 'src/app/Services/proveedores.service';
 import { UnidadmedidaService } from 'src/app/Services/unidadmedida.service';
 
@@ -16,17 +18,20 @@ import { UnidadmedidaService } from 'src/app/Services/unidadmedida.service';
 export class NuevoproductoComponent implements OnInit {
   listaUnidadMedida: IUnidadMedida[] = [];
   listaProveedores: Iproveedor[] = [];
+  listaIVA: IIva[] = [];
+  
   titulo = '';
   frm_Producto: FormGroup;
   constructor(
     private uniadaServicio: UnidadmedidaService,
+    private ivaServicio: ivaService,
     private fb: FormBuilder,
     private proveedoreServicio: ProveedorService
   ) {}
   ngOnInit(): void {
     this.uniadaServicio.todos().subscribe((data) => (this.listaUnidadMedida = data));
     this.proveedoreServicio.todos().subscribe((data) => (this.listaProveedores = data));
-
+    this.ivaServicio.todos().subscribe((data) => (this.listaIVA = data));
     this.crearFormulario();
 
     /*

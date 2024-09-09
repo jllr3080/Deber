@@ -54,7 +54,8 @@ export class NuevaunidadmedidaComponent implements OnInit {
       Detalle: this.frm_UnidadMedida.get('Detalle')?.value,
       Tipo: this.frm_UnidadMedida.get('Tipo')?.value
     };
-    if (this.idUnidadMedida == 0) {
+   
+    if (this.idUnidadMedida == 0 || isNaN(this.idUnidadMedida) ){
       this.unidadService.insertar(unidadmedida).subscribe((x) => {
         Swal.fire('Exito', 'La unidad de medida se grabo con exito', 'success');
         this.navegacion.navigate(['/unidadmedida']);

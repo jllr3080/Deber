@@ -7,7 +7,7 @@ import { Iproveedor } from '../Interfaces/iproveedor';
   providedIn: 'root'
 })
 export class ProveedorService {
-  apiurl = 'http://localhost/codigo/Deber/BackEnd/controllers/controllers/proveedores.controller.php?op=';
+  apiurl = 'http://localhost/codigo/Deber/BackEnd/controllers/proveedores.controller.php?op=';
 
   constructor(private lector: HttpClient) {}
 

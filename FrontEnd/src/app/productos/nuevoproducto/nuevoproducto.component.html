@@ -64,9 +64,11 @@
           <div class="form-group mb-3">
             <label class="form-label" for="IVA_idIVA">IVA</label>
             <select formControlName="IVA_idIVA" class="form-control" id="IVA_idIVA">
-              <!--<option *ngFor="let iva of ivas" [value]="iva.idIVA">
-                {{ iva.Detalle }}
-              </option>-->
+              @for (iva of listaIVA; track $index) {
+                <option [value]="iva.idIVA">
+                  {{ iva.Detalle }}
+                </option>
+              }
             </select>
           </div>
   
