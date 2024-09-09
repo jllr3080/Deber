@@ -6,7 +6,7 @@ class ClaseConectar
     private $host = "localhost";
     private $usuario = "root";
     private $pass = "Temporal2024";
-    private $base = "sexto";
+    private $base = "Sexto";
     public function ProcedimientoParaConectar()
     {
         $this->conexion = mysqli_connect($this->host, $this->usuario, $this->pass, $this->base);
