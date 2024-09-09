@@ -99,7 +99,7 @@ export class NuevoproductoComponent implements OnInit {
    
     };
 
-   console.log(producto);
+
     if (this.idProducto == 0 || isNaN(this.idProducto) )
       {
 
@@ -112,9 +112,9 @@ export class NuevoproductoComponent implements OnInit {
     {
       producto.idProductos = this.idProducto;
       producto.idKardex=this.frm_Producto.controls["idKardex"].value;
-      console.log(producto);
+ 
       this.productoServicio.actualizar(producto).subscribe((x) => {
-        console.log(x);
+        
         Swal.fire('Exito', 'El producto se modifico con exito', 'success');
         this.navegacion.navigate(['/productos']);
       });

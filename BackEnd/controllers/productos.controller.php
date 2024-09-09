@@ -60,8 +60,9 @@ switch ($_GET["op"]) {
         break;
 
     case 'actualizar': // Procedimiento para actualizar un producto existente
-        if (!isset($_POST["idProductos"]) || !isset($_POST["Codigo_Barras"]) || !isset($_POST["Nombre_Producto"]) || !isset($_POST["Graba_IVA"])) {
-            echo json_encode(["error" => "Parametros vacios"]);
+       
+        if (!isset($_POST["Codigo_Barras"]) || !isset($_POST["Nombre_Producto"]) || !isset($_POST["Graba_IVA"]) || !isset($_POST["Unidad_Medida_idUnidad_Medida"]) || !isset($_POST["IVA_idIVA"]) || !isset($_POST["Cantidad"]) || !isset($_POST["Valor_Compra"]) || !isset($_POST["Valor_Venta"]) || !isset($_POST["Proveedores_idProveedores"])) {
+            echo json_encode(["error" => "Missing required parameters."]);
             exit();
         }
 
@@ -76,8 +77,7 @@ switch ($_GET["op"]) {
         $Valor_Compra = $_POST["Valor_Compra"];
         $Valor_Venta = $_POST["Valor_Venta"];
         $idProveedores = $_POST["Proveedores_idProveedores"];
-        print_r($_POST);
-        die();
+        
 /*
 
     "idProductos": 3,

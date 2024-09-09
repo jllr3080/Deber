@@ -48,7 +48,7 @@ export class ProductoService {
   }
 
   // Método para actualizar un producto
-  actualizar(producto: IProducto): Observable<string> {
+  actualizar(producto: IProducto): Observable<any> {
     const formData = new FormData();
     formData.append('Codigo_Barras', producto.Codigo_Barras);
     formData.append('Nombre_Producto', producto.Nombre_Producto);
@@ -60,9 +60,9 @@ export class ProductoService {
     formData.append('Valor_Venta', producto.Valor_Venta.toString());
     formData.append('Proveedores_idProveedores', producto.Proveedores_idProveedores.toString());
     formData.append('idKardex', producto.idKardex.toString());
-    console.log(formData);
+    formData.append('idProductos', producto.idProductos.toString());
 
     // Actualizar el producto
-    return this.http.post<string>(this.apiurl + 'actualizar', formData);
+    return this.http.post<any>(this.apiurl + 'actualizar', formData);
   }
 }
