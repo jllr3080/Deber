@@ -43,11 +43,25 @@ class Producto
     {
         $con = new ClaseConectar();
         $con = $con->ProcedimientoParaConectar();
-        $cadena = "SELECT p.*, u.Detalle as Unidad_Medida, i.Detalle as IVA_Detalle 
-                   FROM `Productos` p 
-                   INNER JOIN Unidad_Medida u ON p.idProductos = u.idUnidad_Medida 
-                   INNER JOIN IVA i ON p.Graba_IVA = i.idIVA 
-                   WHERE p.idProductos = $idProductos";
+        $cadena = "SELECT
+                productos.idProductos, 
+                productos.Codigo_Barras, 
+                productos.Nombre_Producto, 
+                productos.Graba_IVA, 
+                kardex.Unidad_Medida_idUnidad_Medida,
+                kardex.IVA_idIVA,
+                kardex.Proveedores_idProveedores,
+                kardex.Cantidad, 
+                kardex.Valor_Compra, 
+                kardex.Valor_Venta, 
+                kardex.Fecha_Transaccion, 
+                kardex.Tipo_Transaccion,
+                kardex.idKardex
+            FROM
+                productos
+                INNER JOIN kardex ON  productos.idProductos = kardex.Productos_idProductos
+            WHERE
+                kardex.Estado = 1 AND productos.idProductos = $idProductos";
         $datos = mysqli_query($con, $cadena);
         $con->close();
         return $datos;
@@ -85,7 +99,8 @@ class Producto
         }
     }
 
-    public function actualizar($idProductos, $Codigo_Barras, $Nombre_Producto, $Graba_IVA) // update productos set ... where id = $idProductos
+    public function actualizar($idKardex, $idProductos, $Codigo_Barras, $Nombre_Producto, $Graba_IVA, $idUnidad_Medida, 
+    $idIVA, $Cantidad, $Valor_Compra, $Valor_Venta, $idProveedores)
     {
         try {
             $con = new ClaseConectar();
@@ -95,9 +110,33 @@ class Producto
                        `Nombre_Producto`='$Nombre_Producto',
                        `Graba_IVA`='$Graba_IVA'
                        WHERE `idProductos` = $idProductos";
-            if (mysqli_query($con, $cadena)) {
-                return $idProductos; // Éxito, devolver el ID actualizado
-            } else {
+        
+            if (mysqli_query($con, $cadena)) 
+            {
+                $cadenaKardex = "UPDATE Kardex SET 
+                    Cantidad = $Cantidad, 
+                    Valor_Compra = $Valor_Compra, 
+                    Valor_Venta = $Valor_Venta, 
+                    Unidad_Medida_idUnidad_Medida  = $idUnidad_Medida, 
+                    Unidad_Medida_idUnidad_Medida1 = $idUnidad_Medida, 
+                    Unidad_Medida_idUnidad_Medida2 = $idUnidad_Medida, 
+                    IVA = $idIVA, 
+                    IVA_idIVA = $idIVA, 
+                    Proveedores_idProveedores = $idProveedores 
+                WHERE idKardex = $idKardex";
+                    
+                if (mysqli_query($con, $cadenaKardex))
+                {
+                    return $idProductos;
+                }
+                else 
+                {
+                    return $con->error;
+                }
+                 
+            } 
+            else
+             {
                 return $con->error;
             }
         } catch (Exception $th) {

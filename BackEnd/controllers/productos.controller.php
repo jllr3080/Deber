@@ -61,17 +61,40 @@ switch ($_GET["op"]) {
 
     case 'actualizar': // Procedimiento para actualizar un producto existente
         if (!isset($_POST["idProductos"]) || !isset($_POST["Codigo_Barras"]) || !isset($_POST["Nombre_Producto"]) || !isset($_POST["Graba_IVA"])) {
-            echo json_encode(["error" => "Missing required parameters."]);
+            echo json_encode(["error" => "Parametros vacios"]);
             exit();
         }
 
-        $idProductos = intval($_POST["idProductos"]);
-        $Codigo_Barras = $_POST["Codigo_Barras"];
+        $idKardex = $_POST["idKardex"];
+        $idProductos = $_POST["idProductos"];
+        $Codigo_Barras  = $_POST["Codigo_Barras"];
         $Nombre_Producto = $_POST["Nombre_Producto"];
-        $Graba_IVA = intval($_POST["Graba_IVA"]);
+        $Graba_IVA = $_POST["Graba_IVA"];
+        $idUnidad_Medida = $_POST["Unidad_Medida_idUnidad_Medida"];
+        $idIVA = $_POST["IVA_idIVA"];
+        $Cantidad = $_POST["Cantidad"];
+        $Valor_Compra = $_POST["Valor_Compra"];
+        $Valor_Venta = $_POST["Valor_Venta"];
+        $idProveedores = $_POST["Proveedores_idProveedores"];
+        print_r($_POST);
+        die();
+/*
 
+    "idProductos": 3,
+    "Codigo_Barras": "prueba2",
+    "Nombre_Producto": "sda",
+    "Graba_IVA": "1",
+    "Unidad_Medida_idUnidad_Medida": "3",
+    "IVA_idIVA": "1",
+    "Cantidad": "1",
+    "Valor_Compra": "1",
+    "Valor_Venta": "1",
+    "Proveedores_idProveedores": "1",
+    "idKardex": "2"
+ */
         $datos = array();
-        $datos = $producto->actualizar($idProductos, $Codigo_Barras, $Nombre_Producto, $Graba_IVA);
+        $datos = $producto->actualizar($idKardex, $idProductos, $Codigo_Barras, $Nombre_Producto, $Graba_IVA, $idUnidad_Medida, 
+        $idIVA, $Cantidad, $Valor_Compra, $Valor_Venta, $idProveedores);
         echo json_encode($datos);
         break;
 
