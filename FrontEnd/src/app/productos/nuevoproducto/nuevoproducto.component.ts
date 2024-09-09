@@ -112,6 +112,7 @@ export class NuevoproductoComponent implements OnInit {
     {
       producto.idProductos = this.idProducto;
       producto.idKardex=this.frm_Producto.controls["idKardex"].value;
+      console.log(producto);
       this.productoServicio.actualizar(producto).subscribe((x) => {
         console.log(x);
         Swal.fire('Exito', 'El producto se modifico con exito', 'success');
