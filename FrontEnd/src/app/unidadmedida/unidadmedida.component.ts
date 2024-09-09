@@ -16,10 +16,19 @@ export class UnidadmedidaComponent implements OnInit {
 
   constructor(private unidadServicio: UnidadmedidaService) {}
   ngOnInit(): void {
+    this.cargatabla();
+  }
+  
+  cargatabla() {
     this.unidadServicio.todos().subscribe((data) => {
       this.listaunidades = data;
     });
   }
+  eliminar(idUnidad_Medida: number) 
+  {
 
-  eliminar(idUnidad_Medida: number) {}
+    this.unidadServicio.eliminar(idUnidad_Medida).subscribe((data) => {
+      this.cargatabla();
+    });
+  }
 }

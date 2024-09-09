@@ -77,7 +77,12 @@ const routes: Routes = [
         loadComponent: () => import('./unidadmedida/unidadmedida.component').then((m) => m.UnidadmedidaComponent),
         canActivate: [usuariosGuardGuard]
       },
-      /*{
+      {
+        path: 'productos',
+        loadComponent: () => import('./productos/productos.component').then((m) => m.ProductosComponent),
+        canActivate: [usuariosGuardGuard]
+      },
+      {
         path: 'nuevaunidadmedida',
         loadComponent: () =>
           import('./unidadmedida/nuevaunidadmedida/nuevaunidadmedida.component').then((m) => m.NuevaunidadmedidaComponent),
@@ -89,11 +94,7 @@ const routes: Routes = [
           import('./unidadmedida/nuevaunidadmedida/nuevaunidadmedida.component').then((m) => m.NuevaunidadmedidaComponent),
         canActivate: [usuariosGuardGuard]
       },
-      {
-        path: 'productos',
-        loadComponent: () => import('./productos/productos.component').then((m) => m.ProductosComponent),
-        canActivate: [usuariosGuardGuard]
-      },
+     
       {
         path: 'nuevoproducto',
         loadComponent: () => import('./productos/nuevoproducto/nuevoproducto.component').then((m) => m.NuevoproductoComponent),
@@ -103,7 +104,7 @@ const routes: Routes = [
         path: 'editarproducto/:id',
         loadComponent: () => import('./productos/nuevoproducto/nuevoproducto.component').then((m) => m.NuevoproductoComponent),
         canActivate: [usuariosGuardGuard]
-      }*/
+      }
     ]
   },
   {
