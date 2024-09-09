@@ -78,20 +78,6 @@ switch ($_GET["op"]) {
         $Valor_Venta = $_POST["Valor_Venta"];
         $idProveedores = $_POST["Proveedores_idProveedores"];
         
-/*
-
-    "idProductos": 3,
-    "Codigo_Barras": "prueba2",
-    "Nombre_Producto": "sda",
-    "Graba_IVA": "1",
-    "Unidad_Medida_idUnidad_Medida": "3",
-    "IVA_idIVA": "1",
-    "Cantidad": "1",
-    "Valor_Compra": "1",
-    "Valor_Venta": "1",
-    "Proveedores_idProveedores": "1",
-    "idKardex": "2"
- */
         $datos = array();
         $datos = $producto->actualizar($idKardex, $idProductos, $Codigo_Barras, $Nombre_Producto, $Graba_IVA, $idUnidad_Medida, 
         $idIVA, $Cantidad, $Valor_Compra, $Valor_Venta, $idProveedores);
