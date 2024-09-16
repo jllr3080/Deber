@@ -3,13 +3,16 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { Router, Event, ActivatedRoute } from '@angular/router';
 import { IFactura } from 'src/app/Interfaces/factura';
 import { ICliente } from 'src/app/Interfaces/icliente';
+import { IProducto } from 'src/app/Interfaces/iproducto';
 import { ClientesService } from 'src/app/Services/clientes.service';
 import { FacturaService } from 'src/app/Services/factura.service';
+import { CommonModule } from '@angular/common';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-nuevafactura',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule,CommonModule],
   templateUrl: './nuevafactura.component.html',
   styleUrl: './nuevafactura.component.scss'
 })
@@ -18,7 +21,10 @@ export class NuevafacturaComponent implements OnInit {
   titulo = 'Nueva Factura';
   listaClientes: ICliente[] = [];
   listaClientesFiltrada: ICliente[] = [];
+  listaProductos: IProducto[] = [];
   totalapagar: number = 0;
+  productoelejido: any[] = [];
+  clienteSeleccionado: ICliente | null = null;
   //formgroup
   frm_factura: FormGroup;
   idFactura:number=0;
@@ -27,7 +33,8 @@ export class NuevafacturaComponent implements OnInit {
     private clietesServicios: ClientesService,
     private facturaService: FacturaService,
     private navegacion: Router,
-    private ruta:ActivatedRoute
+    private ruta:ActivatedRoute,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
@@ -117,5 +124,52 @@ export class NuevafacturaComponent implements OnInit {
     this.frm_factura.get('Clientes_idClientes')?.setValue(idCliente);
   }
 
+  imprimirFactura() {
+    if (this.idFactura > 0) {
+      window.open(`http://localhost/codigo/Deber/BackEnd/reports/facturas.report.php?id=${this.idFactura}`, '_blank');
+    } else {
+      alert('Por favor, guarde la factura antes de intentar imprimirla.');
+    }
+  }
+
+  agregarProducto(producto: IProducto) {
+    const productoExistente = this.productoelejido.find(p => p.idProductos === producto.idProductos);
+    if (productoExistente) {
+      productoExistente.Cantidad++;
+    } else {
+      this.productoelejido.push({
+        ...producto,
+        Cantidad: 0,
+        Subtotal: producto.Valor_Venta,
+        IVA: producto.Graba_IVA ? producto.Valor_Venta * 0.15 : 0,
+        //Total: producto.Graba_IVA ? producto.Valor_Venta * 1.15 : producto.Valor_Venta
+      });
+    }
+    this.calcularTotales();
+  }
+
+  calcularTotales() {
+    let subtotal = 0;
+    let iva = 0;
+    let total = 0;
+
+    this.productoelejido.forEach(producto => {
+      subtotal += producto.Subtotal;
+      iva += producto.IVA;
+      total += producto.Total;
+    });
+
+    this.frm_factura.patchValue({
+      Sub_total: subtotal,
+      Sub_total_iva: iva,
+      Valor_IVA: iva / subtotal
+    });
+
+    this.totalapagar = total;
+    this.calculos();
+  }
   
+  openModal(content: any) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', size: 'lg' });
+  }
 }

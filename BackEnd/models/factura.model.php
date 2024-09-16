@@ -85,4 +85,51 @@ class Factura
             $con->close();
         }
     }
+    public function obtenerDetallesFactura($idFactura)
+    {
+        try {
+            $con = new ClaseConectar();
+            $con = $con->ProcedimientoParaConectar();
+            $cadena = "SELECT 
+                f.idFactura,
+                f.Fecha,
+                f.Sub_total,
+                f.Sub_total_iva,
+                f.Valor_IVA,
+                c.Nombres AS Nombre_Cliente,
+                c.Direccion AS Direccion_Cliente,
+                c.Telefono AS Telefono_Cliente,
+                c.Cedula AS Cedula_Cliente,
+                c.Correo AS Correo_Cliente,
+                p.Nombre_Producto,
+                p.Graba_IVA,
+                k.Cantidad,
+                k.Valor_Venta AS Precio_Unitario,
+                (k.Cantidad * k.Valor_Venta) AS Sub_Total_item
+            FROM 
+                factura f
+            INNER JOIN 
+                clientes c ON f.Clientes_idClientes = c.idClientes
+            INNER JOIN 
+                kardex k ON k.idKardex = (
+                    SELECT MAX(k2.idKardex)
+                    FROM kardex k2
+                    WHERE k2.Productos_idProductos = k.Productos_idProductos
+                    AND k2.Fecha_Transaccion <= f.Fecha
+                )
+            INNER JOIN 
+                productos p ON k.Productos_idProductos = p.idProductos
+            WHERE 
+                f.idFactura = $idFactura";
+            $datos = mysqli_query($con, $cadena);
+            if (!$datos) {
+                throw new Exception("Error en la consulta: " . mysqli_error($con));
+            }
+            return $datos;
+        } catch (Exception $th) {
+            return $th->getMessage();
+        } finally {
+            $con->close();
+        }
+    }
 }

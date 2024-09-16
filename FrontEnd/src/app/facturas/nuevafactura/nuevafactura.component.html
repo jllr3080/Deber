@@ -31,6 +31,7 @@
             </div>
           }
         </div>
+        <button type="button" class="btn btn-secondary" (click)="openModal(content)">Agregar Producto</button>
         <div class="form-group mb-3">
           <label class="form-label" for="Sub_total">Sub_total</label>
           <input type="text" class="form-control" formControlName="Sub_total" (blur)="calculos()" />
@@ -67,24 +68,39 @@
         <div class="d-grid mt-3">
           <button type="submit" class="btn btn-primary">Grabar factura</button>
         </div>
+        <div class="d-grid mt-3">
+          <button type="submit" class="btn btn-primary">Imprimir factura</button>
+        </div>
+        
       </form>
     </div>
   </div>
 </div>
-
-<!--
-  IMPORTAR => FORMSMODULE  APP.MODULE.TS ||  NUEVOPROVEEDOR.COMPONENT.TS
-  
-  
-  
-  
-  
-  INTRPOLACION => DESDE EL TS AL HTML
-  {{ }} 
-  EVENTOS => EJECUTAR FUNCIONES EN EL TS
-  ()
-  DATA BINDING => DESDE EL HTML AL TS
-  []
-  TWO WAY BIDING => ENVIADO DE DATOS DESDE EL HTML AL TS Y DESDE EL TS AL HTML
-  [()]
-  -->
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Seleccionar Producto</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Código</th>
+          <th>Nombre</th>
+          <th>Precio</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let producto of listaProductos">
+          <td>{{ producto.Codigo_Barras }}</td>
+          <td>{{ producto.Nombre_Producto }}</td>
+          <td>{{ producto.Valor_Venta | currency: 'USD':'symbol':'1.2-2' }}</td>
+          <td>
+            <button type="button" class="btn btn-primary btn-sm" (click)="agregarProducto(producto); modal.dismiss('Product added')">Agregar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ng-template>
