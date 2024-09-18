@@ -53,6 +53,17 @@
               }
             }
           </div>
+
+          <div class="form-group mb-3">
+            <label class="form-label" for="Clubes_club_id">Club</label>
+            <select class="form-control" (change)="cambio($event)" formControlName="Clubes_club_id" id="Clubes_club_id">
+              <option>Seleccione una opcion</option>
+              @for (club of listaClubes; track $index) {
+                <option value="{{ club.club_id }}">{{ club.nombre }}</option>
+              }
+            </select>
+          </div>
+  
            
           <div class="d-grid mt-3">
             <button type="submit" class="btn btn-primary" [disabled]="frm_Miembro.invalid">Grabar</button>
