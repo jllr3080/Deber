@@ -45,6 +45,19 @@ const routes: Routes = [
          path: 'editarclub/:club_id',
          loadComponent: () => import('./clubes/nuevoclub/nuevoClub.component').then((m) => m.NuevoClubComponent)
        },
+
+       {
+        path: 'miembros',
+        loadComponent: () => import('./miembros/miembros.component').then((m) => m.MiembrosComponent)
+      },
+      {
+         path: 'nuevomiembro',
+         loadComponent: () => import('./miembros/nuevomiembro/nuevomiembro.component').then((m) => m.NuevoMiembroComponent)
+       },
+      {
+          path: 'editarmiembro/:miembro_id',
+          loadComponent: () => import('./miembros/nuevomiembro/nuevomiembro.component').then((m) => m.NuevoMiembroComponent)
+        },
       {
         path: 'clientes',
         loadComponent: () => import('./clientes/clientes.component').then((m) => m.ClientesComponent)

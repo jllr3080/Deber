@@ -25,16 +25,21 @@ class MiembrosModel
     {
         $con = new ClaseConectar();
         $con = $con->ProcedimientoParaConectar();
-        $cadena = "INSERT INTO miembros (nombre, apellido, email, telefono,Clubes_club_id) VALUES ($nombre, $apellido, $email, $telefono,$Clubes_club_id)";
-        $datos = mysqli_query($con, $cadena);
-        return $datos;
+
+        $cadena = "INSERT INTO `miembros` ( `nombre`, `apellido`, `email`, `telefono`,`Clubes_club_id`) VALUES ('$nombre','$apellido','$email','$telefono','$Clubes_club_id')";
+        if (mysqli_query($con, $cadena)) {
+            return $con->insert_id;
+        } else {
+            return $con->error;
+        }
+        
         $con->close();
     }
     public function actualizar($miembro_id , $nombre, $apellido, $email, $telefono,$Clubes_club_id)
     {
         $con = new ClaseConectar();
         $con = $con->ProcedimientoParaConectar();
-        $cadena = "UPDATE miembros SET nombre = '$nombre', apellido ='$apellido',email='$email', telefono='$telefono', Clubes_club_id='$Clubes_club_id'WHERE miembro_id = $miembro_id";
+        $cadena = "UPDATE `miembros` SET `nombre`='$nombre',`apellido`='$apellido',`email`='$email',`telefono`='$telefono',`Clubes_club_id`='$Clubes_club_id' WHERE `miembro_id` = $miembro_id";
         $datos = mysqli_query($con, $cadena);
         return $datos;
         $con->close();
