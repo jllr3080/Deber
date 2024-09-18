@@ -58,7 +58,8 @@ class MiembrosModel
     {
         $con = new ClaseConectar();
         $con = $con->ProcedimientoParaConectar();
-        $cadena = "SELECT * FROM miembros";
+        $cadena = "select m.nombre,m.apellido,m.email,m.telefono,c.nombre as nombreClub,c.deporte,c.ubicacion from sexto.miembros m
+                    inner join   sexto.clubes c on  c.club_id=m.Clubes_club_id";
         $datos = mysqli_query($con, $cadena);
         return $datos;
         $con->close();

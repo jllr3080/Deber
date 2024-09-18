@@ -48,7 +48,7 @@ while ($miembro = mysqli_fetch_assoc($miembros))
       $pdf->Cell(40, 6, $miembro['apellido'], 1, 0, 'L');
       $pdf->Cell(30, 6, $miembro['email'], 1, 0, 'L');
       $pdf->Cell(30, 6, $miembro['telefono'], 1, 0, 'L');
-      $pdf->Cell(25, 6, 'LDU', 1, 0, 'R');
+      $pdf->Cell(25, 6, $miembro['nombreClub'], 1, 0, 'R');
      
     
       $pdf->Ln();
