@@ -46,4 +46,11 @@ export class MiembrosComponent implements OnInit {
       });
   
   }
+
+  imprimirMiembro() 
+  {
+    
+      window.open(`http://localhost/codigo/Deber/BackEnd/reports/miembros.report.php`, '_parent');
+    
+  }
 }

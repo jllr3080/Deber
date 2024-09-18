@@ -53,5 +53,15 @@ class MiembrosModel
         return $datos;
         $con->close();
     }
+
+    public function reporteMiembro()
+    {
+        $con = new ClaseConectar();
+        $con = $con->ProcedimientoParaConectar();
+        $cadena = "SELECT * FROM miembros";
+        $datos = mysqli_query($con, $cadena);
+        return $datos;
+        $con->close();
+    }
     
 }
