@@ -8,7 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './theme/shared/shared.module';
 import { ProveedoresComponent } from './proveedores/proveedores.component';
-
+import { ClubesComponent } from './clubes/clubes.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NuevoproveedorComponent } from './proveedores/nuevoproveedor/nuevoproveedor.component';
@@ -26,7 +26,7 @@ import { CommonModule } from '@angular/common';
     BrowserAnimationsModule,
     ProveedoresComponent,
     NuevoproveedorComponent,
-    
+    ClubesComponent,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule
