@@ -71,47 +71,47 @@ export const NavigationItems: NavigationItem[] = [
     icon: 'icon-navigation',
     children: [
       {
-        id: 'proveedores',
-        title: 'Proveedores',
+        id: 'clubes',
+        title: 'Clubes',
         type: 'item',
         classes: 'nav-item',
-        url: '/proveedores',
+        url: '/clubes',
        icon: 'bg-colors'
       },
       {
-        id: 'color',
-        title: 'Clientes',
+        id: 'miembros',
+        title: 'Miembros',
         type: 'item',
         classes: 'nav-item',
-        url: '/clientes',
+        url: '/miembros',
         icon: 'bg-colors'
-      },
-      {
-        id: 'tabler',
-        title: 'Facturas',
-        type: 'item',
-        classes: 'nav-item',
-        url: '/facturas',
-        icon: 'ant-design'
       }
-      ,
-      {
-        id: 'tabler',
-        title: 'Unidad Medida',
-        type: 'item',
-        classes: 'nav-item',
-        url: '/unidadmedida',
-        icon: 'ant-design'
-      }
-      ,
-      {
-        id: 'tabler',
-        title: 'Productos',
-        type: 'item',
-        classes: 'nav-item',
-        url: '/productos',
-        icon: 'ant-design'
-      }
+      // {
+      //   id: 'tabler',
+      //   title: 'Facturas',
+      //   type: 'item',
+      //   classes: 'nav-item',
+      //   url: '/facturas',
+      //   icon: 'ant-design'
+      // }
+      // ,
+      // {
+      //   id: 'tabler',
+      //   title: 'Unidad Medida',
+      //   type: 'item',
+      //   classes: 'nav-item',
+      //   url: '/unidadmedida',
+      //   icon: 'ant-design'
+      // }
+      // ,
+      // {
+      //   id: 'tabler',
+      //   title: 'Productos',
+      //   type: 'item',
+      //   classes: 'nav-item',
+      //   url: '/productos',
+      //   icon: 'ant-design'
+      // }
     ]
   },
 

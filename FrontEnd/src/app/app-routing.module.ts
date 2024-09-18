@@ -34,18 +34,17 @@ const routes: Routes = [
         loadComponent: () => import('./demo/other/sample-page/sample-page.component')
       },
       {
-        path: 'proveedores',
-        loadComponent: () => import('./proveedores/proveedores.component').then((m) => m.ProveedoresComponent),
-        canActivate: [usuariosGuardGuard]
+        path: 'clubes',
+        loadComponent: () => import('./clubes/clubes.component').then((m) => m.ClubesComponent)
       },
       {
-        path: 'nuevoproveedor',
-        loadComponent: () => import('./proveedores/nuevoproveedor/nuevoproveedor.component').then((m) => m.NuevoproveedorComponent)
+        path: 'nuevoclub',
+        loadComponent: () => import('./clubes/nuevoclub/nuevoClub.component').then((m) => m.NuevoClubComponent)
       },
-      {
-        path: 'editarproveedor/:id',
-        loadComponent: () => import('./proveedores/nuevoproveedor/nuevoproveedor.component').then((m) => m.NuevoproveedorComponent)
-      },
+      // {
+      //   path: 'editarclub/:club_id',
+      //   loadComponent: () => import('./proveedores/nuevoproveedor/nuevoproveedor.component').then((m) => m.NuevoproveedorComponent)
+      // },
       {
         path: 'clientes',
         loadComponent: () => import('./clientes/clientes.component').then((m) => m.ClientesComponent)

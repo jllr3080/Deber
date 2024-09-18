@@ -35,7 +35,7 @@ switch ($_GET["op"]) {
         break;
         //TODO: Procedimeinto para insertar un proveedor en la base de datos
     case 'insertar':
-
+        
         
         $nombre = $_POST["nombre"];
         $apellido = $_POST["apellido"];

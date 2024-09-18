@@ -1,0 +1,79 @@
+<div class="card my-5">
+    <div class="card-body">
+      <div class="d-flex justify-content-between align-items-end mb-4">
+        <h3 class="mb-0">
+          {{ titulo }}
+        </h3>
+      </div>
+      <form [formGroup]="frm_Club" (ngSubmit)="grabar()">
+        <div class="row">
+          <div class="form-group mb-3">
+            <label class="form-label" for="nombre">Nombre</label>
+            <input formControlName="nombre" type="text" class="form-control" id="nombre" placeholder="Ingrese el nombre" />
+            @if (frm_Club.get('nombre').invalid && frm_Club.get('nombre').touched) {
+              @if (frm_Club.get('nombre').hasError('required')) {
+                <div>
+                  <small style="color: red">Los nombres son requeridos</small>
+                </div>
+              }
+            }
+          </div>
+          <div class="form-group mb-3">
+            <label class="form-label" for="deporte">Deporte</label>
+            <input formControlName="deporte" type="text" class="form-control" id="deporte" placeholder="Ingrese el deporte" />
+            @if (frm_Club.get('deporte').invalid && frm_Club.get('deporte').touched) {
+              @if (frm_Club.get('deporte').hasError('required')) {
+                <div>
+                  <small style="color: red">Los nombres son requeridos</small>
+                </div>
+              }
+            }
+          </div>
+
+          <div class="form-group mb-3">
+            <label class="form-label" for="fecha_fundacion">Fecha de Fundación</label>
+            <input formControlName="fecha_fundacion" type="date" class="form-control" id="fecha_fundacion" placeholder="Ingrese la Fecha de Fundacion" />
+            @if (frm_Club.get('fecha_fundacion').invalid && frm_Club.get('fecha_fundacion').touched) {
+              @if (frm_Club.get('fecha_fundacion').hasError('required')) {
+                <div>
+                  <small style="color: red">Los nombres son requeridos</small>
+                </div>
+              }
+            }
+          </div>
+
+          <div class="form-group mb-3">
+            <label class="form-label" for="ubicacion">Ubicación</label>
+            <input formControlName="ubicacion" type="text" class="form-control" id="ubicacion" placeholder="Ingrese la ubicación" />
+            @if (frm_Club.get('ubicacion').invalid && frm_Club.get('ubicacion').touched) {
+              @if (frm_Club.get('ubicacion').hasError('required')) {
+                <div>
+                  <small style="color: red">Los nombres son requeridos</small>
+                </div>
+              }
+            }
+          </div>
+          <!-- <div class="form-group mb-3">
+            <label class="form-label" for="Nombres">Tipo</label>
+            <select class="form-control" (change)="cambio($event)">
+              <option>Seleccione una opcion</option>
+              <option value="0">Presentacion</option>
+              <option value="1">Unidad de Medida</option>
+              <option value="2">Factor de Conversion</option>
+            </select>
+            @if (frm_Club.get('Tipo').invalid && frm_Club.get('Tipo').touched) {
+              @if (frm_Club.get('Tipo').hasError('required')) {
+                <div>
+                  <small style="color: red">Los nombres son requeridos</small>
+                </div>
+              }
+            }
+          </div> -->
+  
+          <div class="d-grid mt-3">
+            <button type="submit" class="btn btn-primary" [disabled]="frm_Club.invalid">Grabar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
