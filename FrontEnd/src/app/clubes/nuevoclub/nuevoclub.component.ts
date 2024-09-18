@@ -37,49 +37,48 @@ export class NuevoClubComponent implements OnInit {
       
     });
     this.club_id = parseInt(this.ruta.snapshot.paramMap.get('club_id'));
+
+    if (this.club_id > 0) {
+        this.clubService.uno(this.club_id).subscribe((club) => {
+         
+          this.club_id = club.club_id;
+          this.frm_Club.controls['nombre'].setValue(club.nombre);
+          this.frm_Club.controls['deporte'].setValue(club.deporte);
+          this.frm_Club.controls['fecha_fundacion'].setValue(club.fecha_fundacion);
+          this.frm_Club.controls['ubicacion'].setValue(club.ubicacion);
+
+          
+          this.titulo = 'Actualizar Club';
+        });
+      }
 };
 
 
 
-//     if (this.idUnidadMedida > 0) {
-//       this.unidadService.uno(this.idUnidadMedida).subscribe((unidadmedida) => {
-       
-//         this.idUnidadMedida = unidadmedida.idUnidad_Medida;
-//         this.frm_UnidadMedida.controls['Tipo'].setValue(unidadmedida.Tipo);
-//         this.frm_UnidadMedida.controls['Detalle'].setValue(unidadmedida.Detalle);
-//         this.titulo = 'Actualizar Proveedor';
-//       });
-//     }
 
-  
-//   }
-
-//   cambio(objetoSleect: any) {
-//     this.frm_UnidadMedida.get('Tipo')?.setValue(objetoSleect.target.value);
-//   }
 grabar() {
      let club: IClubes = 
      {
-        nombre:this.frm_Club.get('deporte')?.value,
+        nombre:this.frm_Club.get('nombre')?.value,
         deporte:this.frm_Club.get('deporte')?.value,
         fecha_fundacion:this.frm_Club.get('fecha_fundacion')?.value,
         ubicacion:this.frm_Club.get('ubicacion')?.value      
        
       };
    
-      //if (this.club_id == 0 || isNaN(this.club_id) ){
+      if (this.club_id == 0 || isNaN(this.club_id) ){
        this.clubService.insertar(club).subscribe((x) => {
           Swal.fire('Exito', 'La unidad de medida se grabo con exito', 'success');
           this.navegacion.navigate(['/clubes']);
         });
-      //} 
-    //else {
-    //    unidadmedida.idUnidad_Medida = this.idUnidadMedida;
-    //    this.unidadService.actualizar(unidadmedida).subscribe((x) => {
-    //     Swal.fire('Exito', 'La unidad de medida se modifico con exito', 'success');
-    //      this.navegacion.navigate(['/unidadmedida']);
-    //    });
-    //  }
+      } 
+    else {
+        club.club_id = this.club_id;
+        this.clubService.actualizar(club).subscribe((x) => {
+         Swal.fire('Exito', 'El club se modifico con exito', 'success');
+          this.navegacion.navigate(['/clubes']);
+        });
+      }
   }
 
    

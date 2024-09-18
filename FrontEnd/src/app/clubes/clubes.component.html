@@ -30,16 +30,16 @@
                       <td>{{ club.ubicacion }}</td>
 
                       <td>
-                        <!-- <button
+                        <button
                           type="button"
                           class="btn btn-outline-success"
-                          [routerLink]="['/editarunidadmedida/', unidadmedida.idUnidad_Medida]"
+                          [routerLink]="['/editarclub/', club.club_id]"
                         >
                           Editar
                         </button>
-                        <button (click)="eliminar(unidadmedida.idUnidad_Medida)" type="button" class="btn btn-outline-danger">
+                        <button (click)="eliminar(club.club_id)" type="button" class="btn btn-outline-danger">
                           Eliminar
-                        </button>  -->
+                        </button>  
                       </td>
                     </tr>
                   }

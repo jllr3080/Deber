@@ -25,16 +25,20 @@ class ClubesModel
     {
         $con = new ClaseConectar();
         $con = $con->ProcedimientoParaConectar();
-        $cadena = "INSERT INTO clubes (nombre, deporte, fecha_fundacion, ubicacion) VALUES ($nombre, $deporte, $fecha_fundacion, $ubicacion)";
-        $datos = mysqli_query($con, $cadena);
-        return $datos;
+        $cadena = "INSERT INTO `clubes` ( `nombre`, `deporte`, `fecha_fundacion`, `ubicacion`) VALUES ('$nombre','$deporte','$fecha_fundacion','$ubicacion')";
+        if (mysqli_query($con, $cadena)) {
+            return $con->insert_id;
+        } else {
+            return $con->error;
+        }
+        
         $con->close();
     }
     public function actualizar($club_id , $nombre,  $deporte, $fecha_fundacion, $ubicacion)
     {
         $con = new ClaseConectar();
         $con = $con->ProcedimientoParaConectar();
-        $cadena = "UPDATE clubes SET nombre = '$nombre', deporte ='$deporte',fecha_fundacion='$fecha_fundacion', ubicacion='$ubicacion' WHERE club_id = $club_id";
+        $cadena = "UPDATE `clubes` SET `nombre`='$nombre',`deporte`='$deporte',`fecha_fundacion`='$fecha_fundacion',`ubicacion`='$ubicacion' WHERE `club_id` = $club_id";
         $datos = mysqli_query($con, $cadena);
         return $datos;
         $con->close();

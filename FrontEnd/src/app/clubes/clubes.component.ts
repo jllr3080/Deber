@@ -26,4 +26,24 @@ export class ClubesComponent implements OnInit {
     });
   }
 
+  eliminar(club_id:number)
+  {
+    Swal.fire({
+        title: 'Clubes',
+        text: 'Esta seguro que desea eliminar el club!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Emliminar Club'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.clubServicio.eliminar(club_id).subscribe((data) => {
+            Swal.fire('Club', 'Club eliminado satisfactoriamente.', 'success');
+            this.cargatabla();
+          });
+        }
+      });
+  
+  }
 }

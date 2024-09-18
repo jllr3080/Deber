@@ -41,10 +41,10 @@ const routes: Routes = [
         path: 'nuevoclub',
         loadComponent: () => import('./clubes/nuevoclub/nuevoClub.component').then((m) => m.NuevoClubComponent)
       },
-      // {
-      //   path: 'editarclub/:club_id',
-      //   loadComponent: () => import('./proveedores/nuevoproveedor/nuevoproveedor.component').then((m) => m.NuevoproveedorComponent)
-      // },
+       {
+         path: 'editarclub/:club_id',
+         loadComponent: () => import('./clubes/nuevoclub/nuevoClub.component').then((m) => m.NuevoClubComponent)
+       },
       {
         path: 'clientes',
         loadComponent: () => import('./clientes/clientes.component').then((m) => m.ClientesComponent)
