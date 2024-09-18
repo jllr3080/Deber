@@ -32,9 +32,9 @@ $miembros = $miembro->reporteMiembro();
  $pdf->SetFont('Arial', 'B', 10);
  $pdf->Cell(25, 7, 'Club', 1);
  $pdf->Cell(35, 7, utf8_decode('Nombre Deporte'), 1);
- $pdf->Cell(40, 7, utf8_decode('Nombre Miembro'), 1);
- $pdf->Cell(40, 7, 'Apellido Miembro', 1);
- $pdf->Cell(30, 7, 'E Mail.', 1);
+ $pdf->Cell(35, 7, utf8_decode('Nombre Miembro'), 1);
+ $pdf->Cell(35, 7, 'Apellido Miembro', 1);
+ $pdf->Cell(40, 7, 'E Mail.', 1);
  $pdf->Cell(25, 7, 'Telefono', 1);
  
  $pdf->Ln();
@@ -49,9 +49,9 @@ while ($miembro = mysqli_fetch_assoc($miembros))
     $pdf->Cell(25, 6, $miembro['nombreClub'], 1, 0, 'R');  
     
     $pdf->Cell(35, 6, utf8_decode($miembro['deporte']), 1);
-    $pdf->Cell(40, 6, utf8_decode($miembro['nombre']), 1);
-      $pdf->Cell(40, 6, $miembro['apellido'], 1, 0, 'L');
-      $pdf->Cell(30, 6, $miembro['email'], 1, 0, 'L');
+    $pdf->Cell(35, 6, utf8_decode($miembro['nombre']), 1);
+      $pdf->Cell(35, 6, $miembro['apellido'], 1, 0, 'L');
+      $pdf->Cell(40, 6, $miembro['email'], 1, 0, 'L');
       $pdf->Cell(25, 6, $miembro['telefono'], 1, 0, 'L');
       
      
